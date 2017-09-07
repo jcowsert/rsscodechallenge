@@ -80,12 +80,12 @@ function displayRssFeed(event){
                 console.log(earliestDate)
 
                 $("#overviewReport").append('<h1>RSS Link Overview</h1>')
-                $("#overviewReport").append('<p>Earliest Date: '+earliestDate+'</p>')
+                
                 
                 //format latest date
                 var now = new Date(latestDate);
                 latestDate = now.format('formatThis');
-                $("#overviewReport").append('<p>Latest Date: '+latestDate+'</p>');
+                
                 //write initial RSS date to webpage   
                 var imgcounter = 0
                 for (var i=0; i<feed.length; i++){
@@ -112,6 +112,8 @@ function displayRssFeed(event){
 
                 $("#overviewReport").append('<p>Number of Articles: '+feed.length+'</p>');
                 $("#overviewReport").append('<p>Articles with Images: '+imgcounter+'</p>');
+                $("#overviewReport").append('<p>Earliest Published Date: '+earliestDate+'</p>')
+                $("#overviewReport").append('<p>Latest Published Date: '+latestDate+'</p>');
                 
                 //clear feedUrl after sending data
                 $('#feedUrl').val('');

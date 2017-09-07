@@ -8,24 +8,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://stevenlevithan.com/assets/misc/date.format.js"></script>
     <script type="text/javascript" src="parseRSS.js"></script>
+    <link rel="stylesheet" href="rssFeed.css">
 </head>
     <body>
-        
+        <div class="center">
         <form id = "getFeed">
             Enter RSS Feed URL:
             <input id = "feedUrl" name="feedUrl" type="text"/>
             <input type="submit" value="Submit" >
-        </form> 
-        <div id="overviewReport">
+        </form>
+        </div> 
+        <div id="overviewReport" class="center">
         </div>
-        <div id = 'sortSelect'>
+        <div id = 'sortSelect' class="center">
                 Sort by: <select>
                     <option value = "date">Date</option>
                     <option value = "description">Description</option>
                     <option value="title">Title</option>
                 </select>
             </div>
-        <div id="rssFeed">
+        <div id ="title" class = "center"></div>    
+        <div id="rssFeed" class="center">
             
             
         </div>

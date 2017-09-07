@@ -17,12 +17,14 @@
 $(document).ready(function() {
     
     $("#getFeed").submit(displayRssFeed);
-    
+   
 });
 
 function displayRssFeed(event){
     event.preventDefault();
     $('#rssFeed').empty();
+    $('#title').append('<h1>Articles<h1>');
+    
     var feedurl =  $("input[name='feedUrl']").val();
  
     $.YQL("select * from feed where url='"+feedurl+"'", function (data) {
@@ -47,7 +49,7 @@ function displayRssFeed(event){
                         }
                         else {
                             //if it has images 
-                        rssMarkup += '<img src = ' +feed[i].enclosure.url +'<br />'
+                        rssMarkup += '<img src = ' +feed[i].enclosure.url
                         rssMarkup += feed[i].pubDate +'<br />'
                         rssMarkup += '<a href="' + feed[i].link + '">'
                         rssMarkup += feed[i].title + '</a><br />'
@@ -76,7 +78,9 @@ function displayRssFeed(event){
                 var now = new Date(earliestDate);
                 earliestDate = now.format("formatThis");
                 console.log(earliestDate)
-                $("#overviewReport").html('<p>Earliest Date: '+earliestDate+'</p>')
+
+                $("#overviewReport").append('<h1>RSS Link Overview</h1>')
+                $("#overviewReport").append('<p>Earliest Date: '+earliestDate+'</p>')
                 
                 //format latest date
                 var now = new Date(latestDate);
@@ -96,7 +100,7 @@ function displayRssFeed(event){
                     }
                     else {
                         //if it has images 
-                    rssMarkup += '<img src = ' +feed[i].enclosure.url +'<br />'
+                    rssMarkup += '<img src = ' +feed[i].enclosure.url+ '><br/>'
                     rssMarkup += feed[i].pubDate +'<br />'
                     rssMarkup += '<a href="' + feed[i].link + '">'
                     rssMarkup += feed[i].title + '</a><br />'

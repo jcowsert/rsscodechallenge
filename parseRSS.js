@@ -14,6 +14,52 @@
 
 
 
+var titleSort = function(ascending){
+    
+      return function(a,b){ 
+    
+        if(a.title === null){
+          return 1;
+        }
+        else if(b.title === null){
+          return -1;
+        }
+        else if(a.title === b.title){
+          return 0;
+        }
+        else if(ascending) {
+          return a.title < b.title ? -1 : 1;
+        }
+        else if(!ascending) {
+          return a.title < b.title ? 1 : -1;
+        }
+      };
+    }
+
+var descriptionSort = function(ascending){
+    
+        return function(a,b){ 
+    
+        if(a.description === null){
+            return 1;
+        }
+        else if(b.description === null){
+            return -1;
+        }
+        else if(a.description === b.description){
+            return 0;
+        }
+        else if(ascending) {
+            return a.description < b.description ? -1 : 1;
+        }
+        else if(!ascending) {
+            return a.description < b.description ? 1 : -1;
+        }
+        };
+    }
+
+
+
 $(document).ready(function() {
     
     $("#getFeed").submit(displayRssFeed);
@@ -23,6 +69,7 @@ $(document).ready(function() {
 function displayRssFeed(event){
     event.preventDefault();
     $('#rssFeed').empty();
+    $('#overviewReport, #title').empty();
     $('#title').append('<h1>Articles<h1>');
     
     var feedurl =  $("input[name='feedUrl']").val();
@@ -31,10 +78,8 @@ function displayRssFeed(event){
             // parse response data
                 
                 var feed = data.query.results.item;
-                console.log(feed);
                 
                 //writes feed info to RSS Div
-                
                 function writeRssFeed(){
                     var imgcounter = 0
                     for (var i=0; i<feed.length; i++){
@@ -59,16 +104,31 @@ function displayRssFeed(event){
                         }
                 }
                 
-            }
+                }
+                
+                
                 
 
-                console.log(feed.sort(function(a,b){
+                feed.sort(function(a,b){
                     return new Date(a.pubDate).getTime()- new Date(b.pubDate).getTime()
-                }))
+                })
 
                 var earliestDate = feed[0].pubDate;
-                var latestDate = feed[feed.length-1].pubDate;
+                var tempDateLast = feed[feed.length-1].pubDate;
 
+                if (tempDateLast == null){
+                    var negCounter = 1;
+                    while(feed[feed.length-negCounter].pubDate == null){
+                        
+                        negCounter++ 
+                        var latestDate = feed[feed.length-negCounter].pubDate
+                        
+                        
+                        
+                        
+                    }
+                }
+                else {latestDate = tempDateLast;}
                 console.log(earliestDate);
                 console.log(latestDate);
 
@@ -85,30 +145,12 @@ function displayRssFeed(event){
                 //format latest date
                 var now = new Date(latestDate);
                 latestDate = now.format('formatThis');
-                
+                console.log(latestDate);
                 //write initial RSS date to webpage   
                 var imgcounter = 0
-                for (var i=0; i<feed.length; i++){
-                    //test if has images
-                    var rssMarkup = '<p>'
-                    if(typeof feed[i].enclosure === 'undefined'){
-                        rssMarkup += feed[i].pubDate +'<br />'
-                        rssMarkup += '<a href="' + feed[i].link + '">'
-                        rssMarkup += feed[i].title + '</a><br />'
-                        rssMarkup += feed[i].description + '</p>' 
-                        $('#rssFeed').append(rssMarkup)
-                    }
-                    else {
-                        //if it has images 
-                    rssMarkup += '<img src = ' +feed[i].enclosure.url+ '><br/>'
-                    rssMarkup += feed[i].pubDate +'<br />'
-                    rssMarkup += '<a href="' + feed[i].link + '">'
-                    rssMarkup += feed[i].title + '</a><br />'
-                    rssMarkup += feed[i].description + '</p>'
-                    $('#rssFeed').append(rssMarkup)
-                    imgcounter++;
-                    }
-            }
+
+                
+                writeRssFeed();
 
                 $("#overviewReport").append('<p>Number of Articles: '+feed.length+'</p>');
                 $("#overviewReport").append('<p>Articles with Images: '+imgcounter+'</p>');
@@ -130,38 +172,12 @@ function displayRssFeed(event){
                  } 
                    else if (currentValue ==="description"){
                     $("#rssFeed").html('');
-                    function compare(a,b){
-                        const descriptionA = a.description.toUpperCase();
-                        const descriptionB = b.description.toUpperCase();
-        
-                        let comparison = 0;
-        
-                        if (descriptionA > descriptionB){
-                            comparison = 1;
-                        } else if (descriptionA <descriptionB){
-                            comparison = -1
-                        }
-                        return comparison;
-                    }
-                    feed.sort(compare);
+                    feed.sort(descriptionSort(true));
                     writeRssFeed();
                    }
                    else if (currentValue ==="title"){
                     $("#rssFeed").html('');
-                    function compare(a,b){
-                        const titleA = a.title.toUpperCase();
-                        const titleB = b.title.toUpperCase();
-        
-                        let comparison = 0;
-        
-                        if (titleA > titleB){
-                            comparison = 1;
-                        } else if (titleA <titleB){
-                            comparison = -1
-                        }
-                        return comparison;
-                    }
-                    feed.sort(compare);
+                    feed.sort(titleSort(true));
                     writeRssFeed();
 
                    }
@@ -171,3 +187,4 @@ function displayRssFeed(event){
     
         return false;
 }
+

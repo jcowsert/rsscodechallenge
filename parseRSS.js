@@ -1,3 +1,5 @@
+
+
 (function($) {
     $.YQL = function(query, callback) {
 
@@ -81,12 +83,13 @@ function displayRssFeed(event){
                 
                 //writes feed info to RSS Div
                 function writeRssFeed(){
-                    var imgcounter = 0
+                    imgcounter= 0;
+                    
                     for (var i=0; i<feed.length; i++){
                         //test if has images
                         var rssMarkup = '<p>'
                         if(typeof feed[i].enclosure === 'undefined'){
-                            rssMarkup += feed[i].pubDate +'<br />'
+                            rssMarkup += moment(feed[i].pubDate).format(dateFormat) +'<br />'
                             rssMarkup += '<a href="' + feed[i].link + '">'
                             rssMarkup += feed[i].title + '</a><br />'
                             rssMarkup += feed[i].description + '</p>' 
@@ -94,8 +97,8 @@ function displayRssFeed(event){
                         }
                         else {
                             //if it has images 
-                        rssMarkup += '<img src = ' +feed[i].enclosure.url
-                        rssMarkup += feed[i].pubDate +'<br />'
+                        rssMarkup += '<p><img src = ' +feed[i].enclosure.url +'</p><br />'
+                        rssMarkup += moment(feed[i].pubDate).format(dateFormat) +'<br />'
                         rssMarkup += '<a href="' + feed[i].link + '">'
                         rssMarkup += feed[i].title + '</a><br />'
                         rssMarkup += feed[i].description + '</p>'
@@ -116,42 +119,25 @@ function displayRssFeed(event){
                 var earliestDate = feed[0].pubDate;
                 var tempDateLast = feed[feed.length-1].pubDate;
 
-                if (tempDateLast == null){
+                if (tempDateLast == null){ //test to see if last element has pubDate. If it doesn't iterate until you to the last date.
                     var negCounter = 1;
                     while(feed[feed.length-negCounter].pubDate == null){
                         
                         negCounter++ 
-                        var latestDate = feed[feed.length-negCounter].pubDate
-                        
-                        
-                        
-                        
+                        var latestDate = feed[feed.length-negCounter].pubDate                     
+                                               
                     }
                 }
                 else {latestDate = tempDateLast;}
-                console.log(earliestDate);
-                console.log(latestDate);
-
-                dateFormat.masks.formatThis = 'yyyy-mm-dd hh:mm'
                 
-                //format earliest date
-                var now = new Date(earliestDate);
-                earliestDate = now.format("formatThis");
-                console.log(earliestDate)
-
-                $("#overviewReport").append('<h1>RSS Link Overview</h1>')
-                
-                
-                //format latest date
-                var now = new Date(latestDate);
-                latestDate = now.format('formatThis');
-                console.log(latestDate);
-                //write initial RSS date to webpage   
-                var imgcounter = 0
-
+                //format Date()
+                var dateFormat = 'YYYY MMM Do, h:mm a';
+                earliestDate = moment(earliestDate).format(dateFormat);
+                latestDate = moment(latestDate).format(dateFormat);
+               
                 
                 writeRssFeed();
-
+                $("#overviewReport").append('<h1>RSS Link Overview</h1>')     
                 $("#overviewReport").append('<p>Number of Articles: '+feed.length+'</p>');
                 $("#overviewReport").append('<p>Articles with Images: '+imgcounter+'</p>');
                 $("#overviewReport").append('<p>Earliest Published Date: '+earliestDate+'</p>')

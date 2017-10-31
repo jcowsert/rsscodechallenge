@@ -96,8 +96,8 @@ function displayRssFeed(event){
                             $('#rssFeed').append(rssMarkup)
                         }
                         else {
-                            //if it has images 
-                        rssMarkup += '<img src = ' +feed[i].enclosure.url +'<br />'
+                            //if it has images
+                        rssMarkup += '<p><img src = ' +feed[i].enclosure.url +'</p><br />'
                         rssMarkup += moment(feed[i].pubDate).format(dateFormat) +'<br />'
                         rssMarkup += '<a href="' + feed[i].link + '">'
                         rssMarkup += feed[i].title + '</a><br />'

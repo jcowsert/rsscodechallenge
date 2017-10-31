@@ -25,11 +25,11 @@ a {
     padding-top: 15px;
     padding-bottom: 10px;
     margin-bottom: 20px;
-    box-shadow: 10px 10px 5px #00688B	;
+    box-shadow: 20px 20px 10px #00688B	;
 }
 
 
-#rssMarkup img {
+.img {
     margin: 50px;
     width: 80%;
     padding:5px;

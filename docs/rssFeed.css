@@ -1,5 +1,33 @@
+html {
+    background-color: #ADD8E6;
+}
+
 .center {
    margin:auto;
    width: 35%;
    padding:10px;
+   
+}
+
+body, select, #submit {
+    font-family: 'Russo One', sans-serif;
+    
+    
+}
+
+a {
+    font-size: 30px;
+}
+
+#rssMarkup {
+    background-color: white;
+    padding-left: 20px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+    box-shadow: 10px 10px 5px #00688B	;
+}
+
+#title {
+    text-align: center;
+    font-size: 20px;
 }

@@ -65,7 +65,7 @@ var descriptionSort = function(ascending){
 $(document).ready(function() {
     
     $("#getFeed").submit(displayRssFeed);
-   
+    
 });
 
 function displayRssFeed(event){
@@ -87,31 +87,27 @@ function displayRssFeed(event){
                     
                     for (var i=0; i<feed.length; i++){
                         //test if has images
-                        var rssMarkup = '<p>'
+                        var rssMarkup = '<div id = "rssMarkup">'
                         if(typeof feed[i].enclosure === 'undefined'){
                             rssMarkup += moment(feed[i].pubDate).format(dateFormat) +'<br />'
                             rssMarkup += '<a href="' + feed[i].link + '">'
                             rssMarkup += feed[i].title + '</a><br />'
-                            rssMarkup += feed[i].description + '</p>' 
+                            rssMarkup += feed[i].description +'</div>' 
                             $('#rssFeed').append(rssMarkup)
                         }
                         else {
                             //if it has images 
-                        rssMarkup += '<p><img src = ' +feed[i].enclosure.url +'</p><br />'
+                        rssMarkup += '<img src = ' +feed[i].enclosure.url +'<br />'
                         rssMarkup += moment(feed[i].pubDate).format(dateFormat) +'<br />'
                         rssMarkup += '<a href="' + feed[i].link + '">'
                         rssMarkup += feed[i].title + '</a><br />'
-                        rssMarkup += feed[i].description + '</p>'
+                        rssMarkup += feed[i].description 
                         $('#rssFeed').append(rssMarkup)
                         imgcounter++;
                         }
                 }
                 
                 }
-                
-                
-                
-
                 feed.sort(function(a,b){
                     return new Date(a.pubDate).getTime()- new Date(b.pubDate).getTime()
                 })

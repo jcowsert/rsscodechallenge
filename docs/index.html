@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html ng-app>
+<html ng-app ="rssApp">
 
 
 <head>
@@ -8,16 +8,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript" src="parseRSS.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    
+    
 
     <link rel="stylesheet" href="rssFeed.css">
+    <title>Rss Feed Parser</title>
 </head>
     <body>
         <div class="center">
         <form id = "getFeed">
-            Enter RSS Feed URL:
+            <h1>Enter RSS Feed URL :</h1>   
             <input id = "feedUrl" name="feedUrl" type="text"/>
-            <input type="submit" value="Submit" >
+            <input type="submit" id = "submit" value="Submit" >
         </form>
         </div> 
         <div id="overviewReport" class="center">
@@ -30,10 +33,9 @@
                 </select>
             </div>
         <div id ="title" class = "center"></div>    
-        <div id="rssFeed" class="center">
-            
-            
-        </div>
+        <div id="rssFeed" class="center"></div>
+
+        
     
     </body>
 </html>

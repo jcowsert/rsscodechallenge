@@ -1,5 +1,5 @@
 html {
-    background-color: #ADD8E6;
+    background-color: #65909A	;
 }
 
 .center {
@@ -24,7 +24,7 @@ p {
 }
 
 #rssMarkup {
-    padding: 25px 20px 5px 45px;
+    padding: 25px 20px 15px 45px;
     margin: 30px 25px;
     box-shadow: 20px 20px 10px #00688B;
     background-color: #F0FFFF;	

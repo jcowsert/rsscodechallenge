@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript" src="parseRSS.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href="https://necolas.github.io/normalize.css/7.0.0/normalize.css">
     
     
 
@@ -16,25 +17,29 @@
     <title>Rss Feed Parser</title>
 </head>
     <body>
-        <div class="center">
-        <form id = "getFeed">
-            <h1>Enter RSS Feed URL :</h1>   
-            <input id = "feedUrl" name="feedUrl" type="text"/>
-            <input type="submit" id = "submit" value="Submit" >
-        </form>
-        </div> 
-        <div id="overviewReport" class="center">
-        </div>
-        <div id = 'sortSelect' class="center">
-                Sort by: <select>
-                    <option value = "date">Date</option>
-                    <option value = "description">Description</option>
-                    <option value="title">Title</option>
-                </select>
+        <div id = "container" class="center">
+            <div id = 'left'>
+                <form id = "getFeed">
+                    <h1>Enter RSS Feed URL :</h1>   
+                    <input id = "feedUrl" name="feedUrl" type="text"/>
+                    <input type="submit" id = "submit" value="Submit" >
+                </form>
+            
+                <div id="overviewReport" class="center">
+                </div>
+                <div id = 'sortSelect' class="center">
+                        Sort by: <select>
+                            <option value = "date">Date</option>
+                            <option value = "description">Description</option>
+                            <option value="title">Title</option>
+                        </select>
+                </div>
             </div>
-        <div id ="title" class = "center"></div>    
-        <div id="rssFeed" class="center"></div>
-
+            <div id ="right">
+                   
+                <div id="rssFeed"></div>
+            </div>
+        </div> 
         
     
     </body>

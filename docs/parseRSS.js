@@ -71,8 +71,8 @@ $(document).ready(function() {
 function displayRssFeed(event){
     event.preventDefault();
     $('#rssFeed').empty();
-    $('#overviewReport, #title').empty();
-    $('#title').append('<h1>Articles<h1>');
+    $('#overviewReport').empty();
+    
     
     var feedurl =  $("input[name='feedUrl']").val();
  
@@ -80,7 +80,7 @@ function displayRssFeed(event){
             // parse response data
                 
                 var feed = data.query.results.item;
-                
+                console.log(feed);
                 //writes feed info to RSS Div
                 function writeRssFeed(){
                     imgcounter= 0;

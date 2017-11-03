@@ -1,5 +1,5 @@
 html {
-    background-color: #65909A	;
+    background-color: #59323c	;
 }
 
 .center {
@@ -15,8 +15,17 @@ body, select, #submit {
     
 }
 
+select{
+    background-color: #f2eeb3;
+}
+
 a {
     font-size: 30px;
+    color: #260126
+}
+
+a:hover {
+    color:#8c6954
 }
 
 p {
@@ -26,8 +35,8 @@ p {
 #rssMarkup {
     padding: 25px 20px 15px 45px;
     margin: 30px 25px;
-    box-shadow: 20px 20px 10px #00688B;
-    background-color: #F0FFFF;	
+    box-shadow: 20px 20px 10px #260126;
+    background-color: #F2eeb3;	
     border-radius: 10px;
 }
 
@@ -52,6 +61,9 @@ p {
     width: 20%;
     float: left;
     position: fixed;
+    font-size: 20px;
+    color: #bfafa0;
+    
 }
 
 #right {
@@ -59,3 +71,7 @@ p {
     float: right;
     position: relative;
 }
+
+#overviewReport p {
+    font-size:15px;
+} 
